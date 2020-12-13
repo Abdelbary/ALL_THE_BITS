@@ -1,0 +1,18 @@
+---
+:source:
+  :path: test
+  :file: TestLED.c
+:successes: []
+:failures:
+- :test: test_led_init_should_setSelectedRegisterToDesiredConfigration
+  :line: 16
+  :message: Expected 0x00B80000 Was 0x00B40000
+  :unity_test_time: 0
+:ignores: []
+:counts:
+  :total: 1
+  :passed: 0
+  :failed: 1
+  :ignored: 0
+:stdout: []
+:time: 0.021944000000075903

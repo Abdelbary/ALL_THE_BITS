@@ -1,0 +1,21 @@
+#include "Core.h"
+#include "unity.h"
+#include "LED.h"
+
+
+void test_led_init_should_setSelectedRegisterToDesiredConfigration()
+{
+    LED_PORT->FIOSET     = 0;
+    LED_PORT->FIOCLR     = 0;
+    LED_PORT->FIODIR     = 0;
+    LPC_PINCON->PINSEL3  = 0xFFFFFFFF;
+    LPC_PINCON->PINMODE3 = 0xFFFFFFFF;
+    led_init();
+    
+    TEST_ASSERT_EQUAL_HEX32(0,LED_PORT->FIOSET);
+    TEST_ASSERT_EQUAL_HEX32((BIT_TO_MASK(18) | BIT_TO_MASK(20) | BIT_TO_MASK(21) | BIT_TO_MASK(23)), LED_PORT->FIOCLR );
+    TEST_ASSERT_EQUAL_HEX32((BIT_TO_MASK(18) | BIT_TO_MASK(20) | BIT_TO_MASK(21) | BIT_TO_MASK(23))  , LED_PORT->FIODIR);
+    TEST_ASSERT_EQUAL_HEX32(~(LED0 | LED1 | LED2 | LED3), LPC_PINCON->PINSEL3);
+    TEST_ASSERT_EQUAL_HEX32(~(LED0 | LED1 | LED2 | LED3), LPC_PINCON->PINMODE3);
+
+}
