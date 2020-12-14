@@ -3,7 +3,7 @@
   :path: test
   :file: TestMain.c
 :successes:
-- :test: test_testableMain_should_callLedInitFuntion
+- :test: test_testableMain_should_InitExecutuor
   :line: 15
   :message: ''
   :unity_test_time: 0
@@ -15,4 +15,4 @@
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.05205940000087139
+:time: 0.013214999999036081

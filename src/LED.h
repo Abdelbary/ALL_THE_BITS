@@ -6,10 +6,21 @@
 #define BIT_TO_MASK(bit) (1u << bit)
 
 
-#define LED0    LED_PIN_BIT(18)
-#define LED1    LED_PIN_BIT(20)
-#define LED2    LED_PIN_BIT(21)
-#define LED3    LED_PIN_BIT(23)
+#define LED0_PIN    LED_PIN_BIT(18)
+#define LED1_PIN    LED_PIN_BIT(20)
+#define LED2_PIN    LED_PIN_BIT(21)
+#define LED3_PIN    LED_PIN_BIT(23)
 
+typedef enum
+{
+    LED0 = 0,
+    LED1,
+    LED2,
+    LED3
+}led_pins_t;
+
+void led_toggle(led_pins_t led);
+void led_off(led_pins_t led);
+void led_on(led_pins_t led);
 void led_init(void);
 #endif //_LED_H_

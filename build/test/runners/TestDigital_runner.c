@@ -2,32 +2,27 @@
 
 /*=======Automagically Detected Files To Include=====*/
 #include "unity.h"
-#include "cmock.h"
 #ifndef TEST_INSTANCES
 #define TEST_INSTANCES
 #endif /* TEST_INSTANCES */
 #include "stdint.h"
 #include "Core.h"
-#include "MockExecutor.h"
 
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_testableMain_should_InitExecutuor(void);
+extern void test_Digital_init_NeedToImplement(void);
 
 
 /*=======Mock Management=====*/
 static void CMock_Init(void)
 {
-  MockExecutor_Init();
 }
 static void CMock_Verify(void)
 {
-  MockExecutor_Verify();
 }
 static void CMock_Destroy(void)
 {
-  MockExecutor_Destroy();
 }
 
 /*=======Test Reset Options=====*/
@@ -77,9 +72,8 @@ static void run_test(UnityTestFunction func, const char* name, int line_num)
 /*=======MAIN=====*/
 int main(void)
 {
-  UnityBegin("TestMain.c");
-  run_test(test_testableMain_should_InitExecutuor, "test_testableMain_should_InitExecutuor", 15);
+  UnityBegin("TestDigital.c");
+  run_test(test_Digital_init_NeedToImplement, "test_Digital_init_NeedToImplement", 13);
 
-  CMock_Guts_MemFreeFinal();
   return UnityEnd();
 }

@@ -1,6 +1,6 @@
 #include "Core.h"
 #include "Main.h"
-#include "LED.h"
+#include "Executor.h"
 //
 // NOTE: Do not attempt to test main() directly.
 //       See Lecture 9 for how to handle this special case.
@@ -13,6 +13,8 @@ int main(void)
 int testableMain(void)
 #endif
 {
-    led_init();
+    executor_init();
+
+    while(executor_run()){/*do noithing*/}
     return 0;
 }

@@ -1,0 +1,70 @@
+---
+:source:
+  :path: test
+  :file: TestExecutor.c
+:successes:
+- :test: test_Executor_init_should_initalizeSystem
+  :line: 15
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Executor_run_should_always_returnTrue
+  :line: 23
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Executor_run_should_toggleLed0_when_Digital0IsHigh
+  :line: 36
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Executor_run_should_toggleLed0_when_Digital1IsHigh
+  :line: 45
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Executor_run_should_toggleLed1_when_Digital0and1IsHigh
+  :line: 56
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Executor_run_should_turnOffLed0_when_Digital0and1IsLow
+  :line: 68
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Executor_run_should_toggleLed1_when_Digital2IsHigh
+  :line: 77
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Executor_run_should_toggleLed1_when_Digital3IsHigh
+  :line: 86
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Executor_run_should_toggleLed0_when_Digital0and1IsHigh
+  :line: 97
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Executor_run_should_turnOffLed1_when_Digital2and3IsLow
+  :line: 106
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Executor_run_should_toggleLed2_when_Digital4IsHigh
+  :line: 115
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Executor_run_should_toggleLed3_when_Digital5IsHigh
+  :line: 124
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Executor_run_should_toggleLed3_when_Digital4and5IsHigh
+  :line: 135
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Executor_run_should_turnOffLed3_when_Digital4and5IsLow
+  :line: 144
+  :message: ''
+  :unity_test_time: 0
+:failures: []
+:ignores: []
+:counts:
+  :total: 14
+  :passed: 14
+  :failed: 0
+  :ignored: 0
+:stdout: []
+:time: 0.01531500000419328

@@ -27,6 +27,24 @@ void MockLED_Verify(void);
 
 
 
+#define led_toggle_Ignore() led_toggle_CMockIgnore()
+void led_toggle_CMockIgnore(void);
+#define led_toggle_StopIgnore() led_toggle_CMockStopIgnore()
+void led_toggle_CMockStopIgnore(void);
+#define led_toggle_Expect(led) led_toggle_CMockExpect(__LINE__, led)
+void led_toggle_CMockExpect(UNITY_LINE_TYPE cmock_line, led_pins_t led);
+#define led_off_Ignore() led_off_CMockIgnore()
+void led_off_CMockIgnore(void);
+#define led_off_StopIgnore() led_off_CMockStopIgnore()
+void led_off_CMockStopIgnore(void);
+#define led_off_Expect(led) led_off_CMockExpect(__LINE__, led)
+void led_off_CMockExpect(UNITY_LINE_TYPE cmock_line, led_pins_t led);
+#define led_on_Ignore() led_on_CMockIgnore()
+void led_on_CMockIgnore(void);
+#define led_on_StopIgnore() led_on_CMockStopIgnore()
+void led_on_CMockStopIgnore(void);
+#define led_on_Expect(led) led_on_CMockExpect(__LINE__, led)
+void led_on_CMockExpect(UNITY_LINE_TYPE cmock_line, led_pins_t led);
 #define led_init_Ignore() led_init_CMockIgnore()
 void led_init_CMockIgnore(void);
 #define led_init_StopIgnore() led_init_CMockStopIgnore()
