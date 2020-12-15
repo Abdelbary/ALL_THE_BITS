@@ -3,16 +3,28 @@
   :path: test
   :file: TestLED.c
 :successes:
-- :test: test_led_init_should_setSelectedRegisterToDesiredConfigration
-  :line: 6
+- :test: test_LED_Init_should_ConfigureRegistersOfLED1OnOnly
+  :line: 13
+  :message: ''
+  :unity_test_time: 0
+- :test: test_LED_Toggle_should_ToggleTheCorrectOutput
+  :line: 38
+  :message: ''
+  :unity_test_time: 0
+- :test: test_LED_On_should_EnableTheCorrectOutput
+  :line: 99
+  :message: ''
+  :unity_test_time: 0
+- :test: test_LED_Off_should_DisableTheCorrectOutput
+  :line: 160
   :message: ''
   :unity_test_time: 0
 :failures: []
 :ignores: []
 :counts:
-  :total: 1
-  :passed: 1
+  :total: 4
+  :passed: 4
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.011497500003315508
+:time: 0.013224399997852743

@@ -11,7 +11,9 @@
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_Digital_init_NeedToImplement(void);
+extern void test_Digital_Init_should_InitializeBitsForReading(void);
+extern void test_Digital_ConfigResistors_should_HandleDifferentMasks(void);
+extern void test_Digital_GetBits_should_ReadDigitalInputsAndReturnCurrentValues(void);
 
 
 /*=======Mock Management=====*/
@@ -73,7 +75,9 @@ static void run_test(UnityTestFunction func, const char* name, int line_num)
 int main(void)
 {
   UnityBegin("TestDigital.c");
-  run_test(test_Digital_init_NeedToImplement, "test_Digital_init_NeedToImplement", 13);
+  run_test(test_Digital_Init_should_InitializeBitsForReading, "test_Digital_Init_should_InitializeBitsForReading", 13);
+  run_test(test_Digital_ConfigResistors_should_HandleDifferentMasks, "test_Digital_ConfigResistors_should_HandleDifferentMasks", 28);
+  run_test(test_Digital_GetBits_should_ReadDigitalInputsAndReturnCurrentValues, "test_Digital_GetBits_should_ReadDigitalInputsAndReturnCurrentValues", 46);
 
   return UnityEnd();
 }

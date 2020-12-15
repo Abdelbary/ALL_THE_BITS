@@ -11,7 +11,10 @@
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_led_init_should_setSelectedRegisterToDesiredConfigration();
+extern void test_LED_Init_should_ConfigureRegistersOfLED1OnOnly(void);
+extern void test_LED_Toggle_should_ToggleTheCorrectOutput(void);
+extern void test_LED_On_should_EnableTheCorrectOutput(void);
+extern void test_LED_Off_should_DisableTheCorrectOutput(void);
 
 
 /*=======Mock Management=====*/
@@ -24,12 +27,6 @@ static void CMock_Verify(void)
 static void CMock_Destroy(void)
 {
 }
-
-/*=======Setup (stub)=====*/
-void setUp(void) {}
-
-/*=======Teardown (stub)=====*/
-void tearDown(void) {}
 
 /*=======Test Reset Options=====*/
 void resetTest(void);
@@ -79,7 +76,10 @@ static void run_test(UnityTestFunction func, const char* name, int line_num)
 int main(void)
 {
   UnityBegin("TestLED.c");
-  run_test(test_led_init_should_setSelectedRegisterToDesiredConfigration, "test_led_init_should_setSelectedRegisterToDesiredConfigration", 6);
+  run_test(test_LED_Init_should_ConfigureRegistersOfLED1OnOnly, "test_LED_Init_should_ConfigureRegistersOfLED1OnOnly", 13);
+  run_test(test_LED_Toggle_should_ToggleTheCorrectOutput, "test_LED_Toggle_should_ToggleTheCorrectOutput", 38);
+  run_test(test_LED_On_should_EnableTheCorrectOutput, "test_LED_On_should_EnableTheCorrectOutput", 99);
+  run_test(test_LED_Off_should_DisableTheCorrectOutput, "test_LED_Off_should_DisableTheCorrectOutput", 160);
 
   return UnityEnd();
 }

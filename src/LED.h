@@ -16,11 +16,12 @@ typedef enum
     LED0 = 0,
     LED1,
     LED2,
-    LED3
+    LED3,
+    NUM_LED
 }led_pins_t;
 
-void led_toggle(led_pins_t led);
-void led_off(led_pins_t led);
-void led_on(led_pins_t led);
-void led_init(void);
+void LED_Toggle(led_pins_t num);
+void LED_Off(led_pins_t num);
+void LED_On(led_pins_t num);
+void LED_Init(void);
 #endif //_LED_H_

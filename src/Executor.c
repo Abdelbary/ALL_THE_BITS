@@ -3,36 +3,36 @@
 #include "Digital.h"
 void executor_init(void)
 {
-    Digital_init();
-    led_init();
+    Digital_Init();
+    LED_Init();
 }
 
 BOOL executor_run(void)
 {
-    char bits =  Digital_getBits();
+    char bits =  Digital_GetBits();
     if(0x3 & bits)
     {
-        led_toggle(LED0);
+        LED_Toggle(LED0);
     }
     else
     {
-        led_off(LED0);
+        LED_Off(LED0);
     }
     if(0x0C &bits)
     {
-        led_toggle(LED1);
+        LED_Toggle(LED1);
     }
     else
     {
-        led_off(LED1);
+        LED_Off(LED1);
     }
     if(0x30 & bits)
     {
-        led_toggle(LED2);
+        LED_Toggle(LED2);
     }
     else
     {
-        led_off(LED2);
+        LED_Off(LED2);
     }
     return TRUE;
 }

@@ -27,18 +27,24 @@ void MockDigital_Verify(void);
 
 
 
-#define Digital_init_Ignore() Digital_init_CMockIgnore()
-void Digital_init_CMockIgnore(void);
-#define Digital_init_StopIgnore() Digital_init_CMockStopIgnore()
-void Digital_init_CMockStopIgnore(void);
-#define Digital_init_Expect() Digital_init_CMockExpect(__LINE__)
-void Digital_init_CMockExpect(UNITY_LINE_TYPE cmock_line);
-#define Digital_getBits_IgnoreAndReturn(cmock_retval) Digital_getBits_CMockIgnoreAndReturn(__LINE__, cmock_retval)
-void Digital_getBits_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, char cmock_to_return);
-#define Digital_getBits_StopIgnore() Digital_getBits_CMockStopIgnore()
-void Digital_getBits_CMockStopIgnore(void);
-#define Digital_getBits_ExpectAndReturn(cmock_retval) Digital_getBits_CMockExpectAndReturn(__LINE__, cmock_retval)
-void Digital_getBits_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, char cmock_to_return);
+#define Digital_Init_Ignore() Digital_Init_CMockIgnore()
+void Digital_Init_CMockIgnore(void);
+#define Digital_Init_StopIgnore() Digital_Init_CMockStopIgnore()
+void Digital_Init_CMockStopIgnore(void);
+#define Digital_Init_Expect() Digital_Init_CMockExpect(__LINE__)
+void Digital_Init_CMockExpect(UNITY_LINE_TYPE cmock_line);
+#define Digital_ConfigResistors_Ignore() Digital_ConfigResistors_CMockIgnore()
+void Digital_ConfigResistors_CMockIgnore(void);
+#define Digital_ConfigResistors_StopIgnore() Digital_ConfigResistors_CMockStopIgnore()
+void Digital_ConfigResistors_CMockStopIgnore(void);
+#define Digital_ConfigResistors_Expect(pull_up_mask, pull_down_mask) Digital_ConfigResistors_CMockExpect(__LINE__, pull_up_mask, pull_down_mask)
+void Digital_ConfigResistors_CMockExpect(UNITY_LINE_TYPE cmock_line, uint8_t pull_up_mask, uint8_t pull_down_mask);
+#define Digital_GetBits_IgnoreAndReturn(cmock_retval) Digital_GetBits_CMockIgnoreAndReturn(__LINE__, cmock_retval)
+void Digital_GetBits_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, char cmock_to_return);
+#define Digital_GetBits_StopIgnore() Digital_GetBits_CMockStopIgnore()
+void Digital_GetBits_CMockStopIgnore(void);
+#define Digital_GetBits_ExpectAndReturn(cmock_retval) Digital_GetBits_CMockExpectAndReturn(__LINE__, cmock_retval)
+void Digital_GetBits_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, char cmock_to_return);
 
 #if defined(__GNUC__) && !defined(__ICC) && !defined(__TMS470__)
 #if __GNUC__ > 4 || (__GNUC__ == 4 && (__GNUC_MINOR__ > 6 || (__GNUC_MINOR__ == 6 && __GNUC_PATCHLEVEL__ > 0)))

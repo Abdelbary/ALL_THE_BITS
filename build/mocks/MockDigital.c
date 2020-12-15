@@ -5,29 +5,42 @@
 #include "cmock.h"
 #include "MockDigital.h"
 
-static const char* CMockString_Digital_getBits = "Digital_getBits";
-static const char* CMockString_Digital_init = "Digital_init";
+static const char* CMockString_Digital_ConfigResistors = "Digital_ConfigResistors";
+static const char* CMockString_Digital_GetBits = "Digital_GetBits";
+static const char* CMockString_Digital_Init = "Digital_Init";
+static const char* CMockString_pull_down_mask = "pull_down_mask";
+static const char* CMockString_pull_up_mask = "pull_up_mask";
 
-typedef struct _CMOCK_Digital_init_CALL_INSTANCE
+typedef struct _CMOCK_Digital_Init_CALL_INSTANCE
 {
   UNITY_LINE_TYPE LineNumber;
 
-} CMOCK_Digital_init_CALL_INSTANCE;
+} CMOCK_Digital_Init_CALL_INSTANCE;
 
-typedef struct _CMOCK_Digital_getBits_CALL_INSTANCE
+typedef struct _CMOCK_Digital_ConfigResistors_CALL_INSTANCE
+{
+  UNITY_LINE_TYPE LineNumber;
+  uint8_t Expected_pull_up_mask;
+  uint8_t Expected_pull_down_mask;
+
+} CMOCK_Digital_ConfigResistors_CALL_INSTANCE;
+
+typedef struct _CMOCK_Digital_GetBits_CALL_INSTANCE
 {
   UNITY_LINE_TYPE LineNumber;
   char ReturnVal;
 
-} CMOCK_Digital_getBits_CALL_INSTANCE;
+} CMOCK_Digital_GetBits_CALL_INSTANCE;
 
 static struct MockDigitalInstance
 {
-  char Digital_init_IgnoreBool;
-  CMOCK_MEM_INDEX_TYPE Digital_init_CallInstance;
-  char Digital_getBits_IgnoreBool;
-  char Digital_getBits_FinalReturn;
-  CMOCK_MEM_INDEX_TYPE Digital_getBits_CallInstance;
+  char Digital_Init_IgnoreBool;
+  CMOCK_MEM_INDEX_TYPE Digital_Init_CallInstance;
+  char Digital_ConfigResistors_IgnoreBool;
+  CMOCK_MEM_INDEX_TYPE Digital_ConfigResistors_CallInstance;
+  char Digital_GetBits_IgnoreBool;
+  char Digital_GetBits_FinalReturn;
+  CMOCK_MEM_INDEX_TYPE Digital_GetBits_CallInstance;
 } Mock;
 
 extern jmp_buf AbortFrame;
@@ -36,20 +49,28 @@ void MockDigital_Verify(void)
 {
   UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
   CMOCK_MEM_INDEX_TYPE call_instance;
-  call_instance = Mock.Digital_init_CallInstance;
-  if (Mock.Digital_init_IgnoreBool)
+  call_instance = Mock.Digital_Init_CallInstance;
+  if (Mock.Digital_Init_IgnoreBool)
     call_instance = CMOCK_GUTS_NONE;
   if (CMOCK_GUTS_NONE != call_instance)
   {
-    UNITY_SET_DETAIL(CMockString_Digital_init);
+    UNITY_SET_DETAIL(CMockString_Digital_Init);
     UNITY_TEST_FAIL(cmock_line, CMockStringCalledLess);
   }
-  call_instance = Mock.Digital_getBits_CallInstance;
-  if (Mock.Digital_getBits_IgnoreBool)
+  call_instance = Mock.Digital_ConfigResistors_CallInstance;
+  if (Mock.Digital_ConfigResistors_IgnoreBool)
     call_instance = CMOCK_GUTS_NONE;
   if (CMOCK_GUTS_NONE != call_instance)
   {
-    UNITY_SET_DETAIL(CMockString_Digital_getBits);
+    UNITY_SET_DETAIL(CMockString_Digital_ConfigResistors);
+    UNITY_TEST_FAIL(cmock_line, CMockStringCalledLess);
+  }
+  call_instance = Mock.Digital_GetBits_CallInstance;
+  if (Mock.Digital_GetBits_IgnoreBool)
+    call_instance = CMOCK_GUTS_NONE;
+  if (CMOCK_GUTS_NONE != call_instance)
+  {
+    UNITY_SET_DETAIL(CMockString_Digital_GetBits);
     UNITY_TEST_FAIL(cmock_line, CMockStringCalledLess);
   }
 }
@@ -65,14 +86,14 @@ void MockDigital_Destroy(void)
   memset(&Mock, 0, sizeof(Mock));
 }
 
-void Digital_init(void)
+void Digital_Init(void)
 {
   UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
-  CMOCK_Digital_init_CALL_INSTANCE* cmock_call_instance;
-  UNITY_SET_DETAIL(CMockString_Digital_init);
-  cmock_call_instance = (CMOCK_Digital_init_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.Digital_init_CallInstance);
-  Mock.Digital_init_CallInstance = CMock_Guts_MemNext(Mock.Digital_init_CallInstance);
-  if (Mock.Digital_init_IgnoreBool)
+  CMOCK_Digital_Init_CALL_INSTANCE* cmock_call_instance;
+  UNITY_SET_DETAIL(CMockString_Digital_Init);
+  cmock_call_instance = (CMOCK_Digital_Init_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.Digital_Init_CallInstance);
+  Mock.Digital_Init_CallInstance = CMock_Guts_MemNext(Mock.Digital_Init_CallInstance);
+  if (Mock.Digital_Init_IgnoreBool)
   {
     UNITY_CLR_DETAILS();
     return;
@@ -82,40 +103,93 @@ void Digital_init(void)
   UNITY_CLR_DETAILS();
 }
 
-void Digital_init_CMockIgnore(void)
+void Digital_Init_CMockIgnore(void)
 {
-  Mock.Digital_init_IgnoreBool = (char)1;
+  Mock.Digital_Init_IgnoreBool = (char)1;
 }
 
-void Digital_init_CMockStopIgnore(void)
+void Digital_Init_CMockStopIgnore(void)
 {
-  Mock.Digital_init_IgnoreBool = (char)0;
+  Mock.Digital_Init_IgnoreBool = (char)0;
 }
 
-void Digital_init_CMockExpect(UNITY_LINE_TYPE cmock_line)
+void Digital_Init_CMockExpect(UNITY_LINE_TYPE cmock_line)
 {
-  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_Digital_init_CALL_INSTANCE));
-  CMOCK_Digital_init_CALL_INSTANCE* cmock_call_instance = (CMOCK_Digital_init_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_Digital_Init_CALL_INSTANCE));
+  CMOCK_Digital_Init_CALL_INSTANCE* cmock_call_instance = (CMOCK_Digital_Init_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringOutOfMemory);
   memset(cmock_call_instance, 0, sizeof(*cmock_call_instance));
-  Mock.Digital_init_CallInstance = CMock_Guts_MemChain(Mock.Digital_init_CallInstance, cmock_guts_index);
-  Mock.Digital_init_IgnoreBool = (char)0;
+  Mock.Digital_Init_CallInstance = CMock_Guts_MemChain(Mock.Digital_Init_CallInstance, cmock_guts_index);
+  Mock.Digital_Init_IgnoreBool = (char)0;
   cmock_call_instance->LineNumber = cmock_line;
 }
 
-char Digital_getBits(void)
+void Digital_ConfigResistors(uint8_t pull_up_mask, uint8_t pull_down_mask)
 {
   UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
-  CMOCK_Digital_getBits_CALL_INSTANCE* cmock_call_instance;
-  UNITY_SET_DETAIL(CMockString_Digital_getBits);
-  cmock_call_instance = (CMOCK_Digital_getBits_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.Digital_getBits_CallInstance);
-  Mock.Digital_getBits_CallInstance = CMock_Guts_MemNext(Mock.Digital_getBits_CallInstance);
-  if (Mock.Digital_getBits_IgnoreBool)
+  CMOCK_Digital_ConfigResistors_CALL_INSTANCE* cmock_call_instance;
+  UNITY_SET_DETAIL(CMockString_Digital_ConfigResistors);
+  cmock_call_instance = (CMOCK_Digital_ConfigResistors_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.Digital_ConfigResistors_CallInstance);
+  Mock.Digital_ConfigResistors_CallInstance = CMock_Guts_MemNext(Mock.Digital_ConfigResistors_CallInstance);
+  if (Mock.Digital_ConfigResistors_IgnoreBool)
+  {
+    UNITY_CLR_DETAILS();
+    return;
+  }
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringCalledMore);
+  cmock_line = cmock_call_instance->LineNumber;
+  {
+    UNITY_SET_DETAILS(CMockString_Digital_ConfigResistors,CMockString_pull_up_mask);
+    UNITY_TEST_ASSERT_EQUAL_HEX8(cmock_call_instance->Expected_pull_up_mask, pull_up_mask, cmock_line, CMockStringMismatch);
+  }
+  {
+    UNITY_SET_DETAILS(CMockString_Digital_ConfigResistors,CMockString_pull_down_mask);
+    UNITY_TEST_ASSERT_EQUAL_HEX8(cmock_call_instance->Expected_pull_down_mask, pull_down_mask, cmock_line, CMockStringMismatch);
+  }
+  UNITY_CLR_DETAILS();
+}
+
+void CMockExpectParameters_Digital_ConfigResistors(CMOCK_Digital_ConfigResistors_CALL_INSTANCE* cmock_call_instance, uint8_t pull_up_mask, uint8_t pull_down_mask)
+{
+  cmock_call_instance->Expected_pull_up_mask = pull_up_mask;
+  cmock_call_instance->Expected_pull_down_mask = pull_down_mask;
+}
+
+void Digital_ConfigResistors_CMockIgnore(void)
+{
+  Mock.Digital_ConfigResistors_IgnoreBool = (char)1;
+}
+
+void Digital_ConfigResistors_CMockStopIgnore(void)
+{
+  Mock.Digital_ConfigResistors_IgnoreBool = (char)0;
+}
+
+void Digital_ConfigResistors_CMockExpect(UNITY_LINE_TYPE cmock_line, uint8_t pull_up_mask, uint8_t pull_down_mask)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_Digital_ConfigResistors_CALL_INSTANCE));
+  CMOCK_Digital_ConfigResistors_CALL_INSTANCE* cmock_call_instance = (CMOCK_Digital_ConfigResistors_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringOutOfMemory);
+  memset(cmock_call_instance, 0, sizeof(*cmock_call_instance));
+  Mock.Digital_ConfigResistors_CallInstance = CMock_Guts_MemChain(Mock.Digital_ConfigResistors_CallInstance, cmock_guts_index);
+  Mock.Digital_ConfigResistors_IgnoreBool = (char)0;
+  cmock_call_instance->LineNumber = cmock_line;
+  CMockExpectParameters_Digital_ConfigResistors(cmock_call_instance, pull_up_mask, pull_down_mask);
+}
+
+char Digital_GetBits(void)
+{
+  UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
+  CMOCK_Digital_GetBits_CALL_INSTANCE* cmock_call_instance;
+  UNITY_SET_DETAIL(CMockString_Digital_GetBits);
+  cmock_call_instance = (CMOCK_Digital_GetBits_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.Digital_GetBits_CallInstance);
+  Mock.Digital_GetBits_CallInstance = CMock_Guts_MemNext(Mock.Digital_GetBits_CallInstance);
+  if (Mock.Digital_GetBits_IgnoreBool)
   {
     UNITY_CLR_DETAILS();
     if (cmock_call_instance == NULL)
-      return Mock.Digital_getBits_FinalReturn;
-    Mock.Digital_getBits_FinalReturn = cmock_call_instance->ReturnVal;
+      return Mock.Digital_GetBits_FinalReturn;
+    Mock.Digital_GetBits_FinalReturn = cmock_call_instance->ReturnVal;
     return cmock_call_instance->ReturnVal;
   }
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringCalledMore);
@@ -124,34 +198,34 @@ char Digital_getBits(void)
   return cmock_call_instance->ReturnVal;
 }
 
-void Digital_getBits_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, char cmock_to_return)
+void Digital_GetBits_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, char cmock_to_return)
 {
-  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_Digital_getBits_CALL_INSTANCE));
-  CMOCK_Digital_getBits_CALL_INSTANCE* cmock_call_instance = (CMOCK_Digital_getBits_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_Digital_GetBits_CALL_INSTANCE));
+  CMOCK_Digital_GetBits_CALL_INSTANCE* cmock_call_instance = (CMOCK_Digital_GetBits_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringOutOfMemory);
   memset(cmock_call_instance, 0, sizeof(*cmock_call_instance));
-  Mock.Digital_getBits_CallInstance = CMock_Guts_MemChain(Mock.Digital_getBits_CallInstance, cmock_guts_index);
-  Mock.Digital_getBits_IgnoreBool = (char)0;
+  Mock.Digital_GetBits_CallInstance = CMock_Guts_MemChain(Mock.Digital_GetBits_CallInstance, cmock_guts_index);
+  Mock.Digital_GetBits_IgnoreBool = (char)0;
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->ReturnVal = cmock_to_return;
-  Mock.Digital_getBits_IgnoreBool = (char)1;
+  Mock.Digital_GetBits_IgnoreBool = (char)1;
 }
 
-void Digital_getBits_CMockStopIgnore(void)
+void Digital_GetBits_CMockStopIgnore(void)
 {
-  if(Mock.Digital_getBits_IgnoreBool)
-    Mock.Digital_getBits_CallInstance = CMock_Guts_MemNext(Mock.Digital_getBits_CallInstance);
-  Mock.Digital_getBits_IgnoreBool = (char)0;
+  if(Mock.Digital_GetBits_IgnoreBool)
+    Mock.Digital_GetBits_CallInstance = CMock_Guts_MemNext(Mock.Digital_GetBits_CallInstance);
+  Mock.Digital_GetBits_IgnoreBool = (char)0;
 }
 
-void Digital_getBits_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, char cmock_to_return)
+void Digital_GetBits_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, char cmock_to_return)
 {
-  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_Digital_getBits_CALL_INSTANCE));
-  CMOCK_Digital_getBits_CALL_INSTANCE* cmock_call_instance = (CMOCK_Digital_getBits_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_Digital_GetBits_CALL_INSTANCE));
+  CMOCK_Digital_GetBits_CALL_INSTANCE* cmock_call_instance = (CMOCK_Digital_GetBits_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringOutOfMemory);
   memset(cmock_call_instance, 0, sizeof(*cmock_call_instance));
-  Mock.Digital_getBits_CallInstance = CMock_Guts_MemChain(Mock.Digital_getBits_CallInstance, cmock_guts_index);
-  Mock.Digital_getBits_IgnoreBool = (char)0;
+  Mock.Digital_GetBits_CallInstance = CMock_Guts_MemChain(Mock.Digital_GetBits_CallInstance, cmock_guts_index);
+  Mock.Digital_GetBits_IgnoreBool = (char)0;
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->ReturnVal = cmock_to_return;
 }

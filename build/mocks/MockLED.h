@@ -27,30 +27,30 @@ void MockLED_Verify(void);
 
 
 
-#define led_toggle_Ignore() led_toggle_CMockIgnore()
-void led_toggle_CMockIgnore(void);
-#define led_toggle_StopIgnore() led_toggle_CMockStopIgnore()
-void led_toggle_CMockStopIgnore(void);
-#define led_toggle_Expect(led) led_toggle_CMockExpect(__LINE__, led)
-void led_toggle_CMockExpect(UNITY_LINE_TYPE cmock_line, led_pins_t led);
-#define led_off_Ignore() led_off_CMockIgnore()
-void led_off_CMockIgnore(void);
-#define led_off_StopIgnore() led_off_CMockStopIgnore()
-void led_off_CMockStopIgnore(void);
-#define led_off_Expect(led) led_off_CMockExpect(__LINE__, led)
-void led_off_CMockExpect(UNITY_LINE_TYPE cmock_line, led_pins_t led);
-#define led_on_Ignore() led_on_CMockIgnore()
-void led_on_CMockIgnore(void);
-#define led_on_StopIgnore() led_on_CMockStopIgnore()
-void led_on_CMockStopIgnore(void);
-#define led_on_Expect(led) led_on_CMockExpect(__LINE__, led)
-void led_on_CMockExpect(UNITY_LINE_TYPE cmock_line, led_pins_t led);
-#define led_init_Ignore() led_init_CMockIgnore()
-void led_init_CMockIgnore(void);
-#define led_init_StopIgnore() led_init_CMockStopIgnore()
-void led_init_CMockStopIgnore(void);
-#define led_init_Expect() led_init_CMockExpect(__LINE__)
-void led_init_CMockExpect(UNITY_LINE_TYPE cmock_line);
+#define LED_Toggle_Ignore() LED_Toggle_CMockIgnore()
+void LED_Toggle_CMockIgnore(void);
+#define LED_Toggle_StopIgnore() LED_Toggle_CMockStopIgnore()
+void LED_Toggle_CMockStopIgnore(void);
+#define LED_Toggle_Expect(num) LED_Toggle_CMockExpect(__LINE__, num)
+void LED_Toggle_CMockExpect(UNITY_LINE_TYPE cmock_line, led_pins_t num);
+#define LED_Off_Ignore() LED_Off_CMockIgnore()
+void LED_Off_CMockIgnore(void);
+#define LED_Off_StopIgnore() LED_Off_CMockStopIgnore()
+void LED_Off_CMockStopIgnore(void);
+#define LED_Off_Expect(num) LED_Off_CMockExpect(__LINE__, num)
+void LED_Off_CMockExpect(UNITY_LINE_TYPE cmock_line, led_pins_t num);
+#define LED_On_Ignore() LED_On_CMockIgnore()
+void LED_On_CMockIgnore(void);
+#define LED_On_StopIgnore() LED_On_CMockStopIgnore()
+void LED_On_CMockStopIgnore(void);
+#define LED_On_Expect(num) LED_On_CMockExpect(__LINE__, num)
+void LED_On_CMockExpect(UNITY_LINE_TYPE cmock_line, led_pins_t num);
+#define LED_Init_Ignore() LED_Init_CMockIgnore()
+void LED_Init_CMockIgnore(void);
+#define LED_Init_StopIgnore() LED_Init_CMockStopIgnore()
+void LED_Init_CMockStopIgnore(void);
+#define LED_Init_Expect() LED_Init_CMockExpect(__LINE__)
+void LED_Init_CMockExpect(UNITY_LINE_TYPE cmock_line);
 
 #if defined(__GNUC__) && !defined(__ICC) && !defined(__TMS470__)
 #if __GNUC__ > 4 || (__GNUC__ == 4 && (__GNUC_MINOR__ > 6 || (__GNUC_MINOR__ == 6 && __GNUC_PATCHLEVEL__ > 0)))
