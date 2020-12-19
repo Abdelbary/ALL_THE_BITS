@@ -1,0 +1,18 @@
+---
+:source:
+  :path: test
+  :file: TestAnalog_Hardware.c
+:successes: []
+:failures: []
+:ignores:
+- :test: test_Analog_Hardware_NeedToImplement
+  :line: 15
+  :message: Need to Implement Analog_Hardware
+  :unity_test_time: 0
+:counts:
+  :total: 1
+  :passed: 0
+  :failed: 0
+  :ignored: 1
+:stdout: []
+:time: 0.013883800012990832

@@ -1,8 +1,12 @@
+#include "Core.h"
 #include "unity.h"
-#include "cmock.h"
-#include "MockLED.h"
+#include "Main.h"
+#include "MockAnalogConductor.h"
 #include "MockDigital.h"
+#include "MockLED.h"
+#include "MockTimer.h"
 #include "Executor.h"
+#include "MockAnalogModel.h"
 
 void setUp(void)
 {
@@ -12,141 +16,31 @@ void tearDown(void)
 {
 }
 
-void test_Executor_init_should_initalizeSystem(void)
+void test_Executor_Init_should_InitializeAllSubsystems(void)
 {
     LED_Init_Expect();
     Digital_Init_Expect();
-    executor_init();
+    Timer_Init_Expect();
+    AnalogConductor_Init_Expect();
+
+    Executor_Init();
 }
 
-
-void test_Executor_run_should_always_returnTrue()
+void test_Executor_Exec_should_TurnOnLeds_when_FirstOfPairGreaterThanSecondOfPair(void)
 {
-    int cnt = 3;
-    while(cnt--)
-    {
-    Digital_GetBits_ExpectAndReturn(0x01);
-    LED_Toggle_Expect(LED0);
-    LED_Off_Expect(LED1);
-    LED_Off_Expect(LED2);
-    TEST_ASSERT_TRUE(executor_run());
-    }
+    AnalogConductor_Exec_Expect();
+    AnalogModel_GetChannel_ExpectAndReturn(0, 101);
+    AnalogModel_GetChannel_ExpectAndReturn(1, 100);
+    LED_On_Expect(LED0);
+
+    AnalogModel_GetChannel_ExpectAndReturn(2, 1);
+    AnalogModel_GetChannel_ExpectAndReturn(3, 0);
+    LED_On_Expect(LED1);
+
+    AnalogModel_GetChannel_ExpectAndReturn(4, 0x8000);
+    AnalogModel_GetChannel_ExpectAndReturn(5, 0x7FFF);
+    LED_On_Expect(LED2);
+
+    Executor_Exec();
 }
 
-void test_Executor_run_should_toggleLed0_when_Digital0IsHigh()
-{
-    Digital_GetBits_ExpectAndReturn(0x01);
-    LED_Toggle_Expect(LED0);
-    LED_Off_Expect(LED1);
-    LED_Off_Expect(LED2);
-    executor_run();
-}
-
-void test_Executor_run_should_toggleLed0_when_Digital1IsHigh()
-{
-    Digital_GetBits_ExpectAndReturn(0x02);
-    LED_Toggle_Expect(LED0);
-    LED_Off_Expect(LED1);
-    LED_Off_Expect(LED2);
-    executor_run();
-}
-
-
-
-void test_Executor_run_should_toggleLed1_when_Digital0and1IsHigh()
-{
-    Digital_GetBits_ExpectAndReturn(0x03);
-    LED_Toggle_Expect(LED0);
-    LED_Off_Expect(LED1);
-    LED_Off_Expect(LED2);
-
-    
-    executor_run();
-}
-
-
-void test_Executor_run_should_turnOffLed0_when_Digital0and1IsLow()
-{
-    Digital_GetBits_ExpectAndReturn(0x00);
-    LED_Off_Expect(LED0);
-    LED_Off_Expect(LED1);
-    LED_Off_Expect(LED2);
-    executor_run();
-}
-/*-======================================================================*/
-void test_Executor_run_should_toggleLed1_when_Digital2IsHigh()
-{
-    Digital_GetBits_ExpectAndReturn(0x04);
-    LED_Toggle_Expect(LED1);
-    LED_Off_Expect(LED0);
-    LED_Off_Expect(LED2);
-    executor_run();
-}
-
-void test_Executor_run_should_toggleLed1_when_Digital3IsHigh()
-{
-    Digital_GetBits_ExpectAndReturn(0x08);
-    LED_Toggle_Expect(LED1);
-    LED_Off_Expect(LED0);
-    LED_Off_Expect(LED2);
-    executor_run();
-}
-
-
-
-void test_Executor_run_should_toggleLed0_when_Digital0and1IsHigh()
-{
-    Digital_GetBits_ExpectAndReturn(0x0C);
-    LED_Toggle_Expect(LED1);
-    LED_Off_Expect(LED0);
-    LED_Off_Expect(LED2);
-    executor_run();
-}
-
-void test_Executor_run_should_turnOffLed1_when_Digital2and3IsLow()
-{
-    Digital_GetBits_ExpectAndReturn(0x00);
-    LED_Off_Expect(LED0);
-    LED_Off_Expect(LED1);
-    LED_Off_Expect(LED2);
-    executor_run();
-}
-/*-======================================================================*/
-void test_Executor_run_should_toggleLed2_when_Digital4IsHigh()
-{
-    Digital_GetBits_ExpectAndReturn(0x10);
-    LED_Toggle_Expect(LED2);
-    LED_Off_Expect(LED0);
-    LED_Off_Expect(LED1);
-    executor_run();
-}
-
-void test_Executor_run_should_toggleLed3_when_Digital5IsHigh()
-{
-    Digital_GetBits_ExpectAndReturn(0x20);
-    LED_Toggle_Expect(LED2);
-    LED_Off_Expect(LED0);
-    LED_Off_Expect(LED1);
-    executor_run();
-}
-
-
-
-void test_Executor_run_should_toggleLed3_when_Digital4and5IsHigh()
-{
-    Digital_GetBits_ExpectAndReturn(0x30);
-    LED_Toggle_Expect(LED2);
-    LED_Off_Expect(LED0);
-    LED_Off_Expect(LED1);
-    executor_run();
-}
-
-void test_Executor_run_should_turnOffLed3_when_Digital4and5IsLow()
-{
-    Digital_GetBits_ExpectAndReturn(0x00);
-    LED_Off_Expect(LED0);
-    LED_Off_Expect(LED1);
-    LED_Off_Expect(LED2);
-    
-    executor_run();
-}

@@ -1,0 +1,26 @@
+---
+:source:
+  :path: test
+  :file: TestAnalog_Conductor.c
+:successes:
+- :test: test_Analog_Conductor_Init_should_callInitFunction
+  :line: 14
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Analog_Conductor_Exec_should_checkForNewValueAndDoNothing_when_STATUS_NO_CHANGE
+  :line: 22
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Analog_Conductor_Exec_should_AddNewValueToModule_When_STATE_UPDATED
+  :line: 36
+  :message: ''
+  :unity_test_time: 0
+:failures: []
+:ignores: []
+:counts:
+  :total: 3
+  :passed: 3
+  :failed: 0
+  :ignored: 0
+:stdout: []
+:time: 0.014150899980450049

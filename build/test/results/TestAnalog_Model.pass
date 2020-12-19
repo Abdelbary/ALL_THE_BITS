@@ -1,0 +1,30 @@
+---
+:source:
+  :path: test
+  :file: TestAnalog_Model.c
+:successes:
+- :test: test_Analog_Init_NeedToImplement
+  :line: 18
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Analog_AddReading_should_updateAnalogValueArray
+  :line: 30
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Analog_AddReading_should_RejectAnalogValueOutOfIndx
+  :line: 42
+  :message: ''
+  :unity_test_time: 0
+- :test: test_Analog_Read_NeedToImplement
+  :line: 57
+  :message: ''
+  :unity_test_time: 0
+:failures: []
+:ignores: []
+:counts:
+  :total: 4
+  :passed: 4
+  :failed: 0
+  :ignored: 0
+:stdout: []
+:time: 0.036929699999745935

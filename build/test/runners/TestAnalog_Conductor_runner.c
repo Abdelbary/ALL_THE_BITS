@@ -8,41 +8,32 @@
 #endif /* TEST_INSTANCES */
 #include "stdint.h"
 #include "Core.h"
-#include "MockLED.h"
-#include "MockDigital.h"
-#include "MockAnalog_Conductor.h"
 #include "MockAnalog_Model.h"
+#include "MockAnalog_Hardware.h"
 
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_Executor_init_should_initalizeSystem(void);
-extern void test_Executor_run_should_always_returnTrue();
-extern void test_Executor_run_should_toggleLed0_when_ADC0GreaterThanADC1();
-extern void test_Executor_run_should_turnOffLed0_when_ADC0SmallerThanADC1();
+extern void test_Analog_Conductor_Init_should_callInitFunction(void);
+extern void test_Analog_Conductor_Exec_should_checkForNewValueAndDoNothing_when_STATUS_NO_CHANGE();
+extern void test_Analog_Conductor_Exec_should_AddNewValueToModule_When_STATE_UPDATED();
 
 
 /*=======Mock Management=====*/
 static void CMock_Init(void)
 {
-  MockLED_Init();
-  MockDigital_Init();
-  MockAnalog_Conductor_Init();
   MockAnalog_Model_Init();
+  MockAnalog_Hardware_Init();
 }
 static void CMock_Verify(void)
 {
-  MockLED_Verify();
-  MockDigital_Verify();
-  MockAnalog_Conductor_Verify();
   MockAnalog_Model_Verify();
+  MockAnalog_Hardware_Verify();
 }
 static void CMock_Destroy(void)
 {
-  MockLED_Destroy();
-  MockDigital_Destroy();
-  MockAnalog_Conductor_Destroy();
   MockAnalog_Model_Destroy();
+  MockAnalog_Hardware_Destroy();
 }
 
 /*=======Test Reset Options=====*/
@@ -92,11 +83,10 @@ static void run_test(UnityTestFunction func, const char* name, int line_num)
 /*=======MAIN=====*/
 int main(void)
 {
-  UnityBegin("TestExecutor.c");
-  run_test(test_Executor_init_should_initalizeSystem, "test_Executor_init_should_initalizeSystem", 17);
-  run_test(test_Executor_run_should_always_returnTrue, "test_Executor_run_should_always_returnTrue", 26);
-  run_test(test_Executor_run_should_toggleLed0_when_ADC0GreaterThanADC1, "test_Executor_run_should_toggleLed0_when_ADC0GreaterThanADC1", 39);
-  run_test(test_Executor_run_should_turnOffLed0_when_ADC0SmallerThanADC1, "test_Executor_run_should_turnOffLed0_when_ADC0SmallerThanADC1", 50);
+  UnityBegin("TestAnalog_Conductor.c");
+  run_test(test_Analog_Conductor_Init_should_callInitFunction, "test_Analog_Conductor_Init_should_callInitFunction", 14);
+  run_test(test_Analog_Conductor_Exec_should_checkForNewValueAndDoNothing_when_STATUS_NO_CHANGE, "test_Analog_Conductor_Exec_should_checkForNewValueAndDoNothing_when_STATUS_NO_CHANGE", 22);
+  run_test(test_Analog_Conductor_Exec_should_AddNewValueToModule_When_STATE_UPDATED, "test_Analog_Conductor_Exec_should_AddNewValueToModule_When_STATE_UPDATED", 36);
 
   CMock_Guts_MemFreeFinal();
   return UnityEnd();
